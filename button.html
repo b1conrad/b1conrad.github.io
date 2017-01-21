@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>title</title>
+<meta charset="UTF-8">
+</head>
+<body>
+<button id="button">Click here</button>
+<div id="surprise"></div>
+<script type="text/javascript">
+var theButton = document.getElementById("button");
+var theDiv = document.getElementById("surprise");
+theButton.addEventListener("click",function(){
+  theDiv.innerHTML = "<h1>SURPRISE</h1>";
+});
+</script>
+</body>
+</html>
