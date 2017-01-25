@@ -30,7 +30,7 @@ p { font-family: courier, sans-serif; }
 $("document").ready(function(){
   var $prefix = $("#prefix");
   $prefix<span>.focus();</span>
-  var $cities = $("#cities li");
+  var $cities = $("#city-list li");
 <span>  var markMatches = function() {</span>
     $cities.removeClass("match");
 
@@ -55,7 +55,7 @@ $("document").ready(function(){
 <span class="advanced">(function(){</span>
   var prefix = document.getElementById("prefix");
   prefix<span>.focus();</span>
-  var cities = document.getElementById("cities").children;
+  var cities = document.getElementById("city-list").children;
 <span>  var markMatches = function() {</span>
     for (var i=0; i&lt;cities.length; ++i) {
       cities[i].className = "";

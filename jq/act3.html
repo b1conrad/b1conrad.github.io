@@ -8,7 +8,7 @@
 $("document").ready(function(){
   var $prefix = $("#prefix");
   $prefix.focus();
-  var $cities = $("#cities li");
+  var $cities = $("#city-list li");
   var markMatches = function() {
     $cities.removeClass("match");
     var thePrefix = $prefix.val().toLowerCase();
@@ -24,14 +24,14 @@ $("document").ready(function(){
 });
 </script>
 <style type="text/css">
-#cities li { display: none; }
-#cities li.match { display: list-item; }
+#city-list li { display: none; }
+#city-list li.match { display: list-item; }
 </style>
 </head>
 <body>
 <h1>Utah Towns and Cities</h1>
 <input id="prefix" placeholder="search">
-<ul id="cities">
+<ul id="city-list">
 <li>Alpine</li>
 <li>Altamont</li>
 <li>Alton</li>

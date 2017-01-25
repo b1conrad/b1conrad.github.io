@@ -4,14 +4,14 @@
 <title>Utah Towns and Cities</title>
 <meta charset="UTF-8">
 <style type="text/css">
-#cities li { display: none; }
-#cities li.match { display: list-item; }
+#city-list li { display: none; }
+#city-list li.match { display: list-item; }
 </style>
 </head>
 <body>
 <h1>Utah Towns and Cities</h1>
 <input id="prefix" placeholder="search">
-<ul id="cities">
+<ul id="city-list">
 <li>Alpine</li>
 <li>Altamont</li>
 <li>Alton</li>
@@ -266,10 +266,9 @@
 <li>Woods Cross</li>
 </ul>
 <script type="text/javascript">
-(function(){
   var prefix = document.getElementById("prefix");
   prefix.focus();
-  var cities = document.getElementById("cities").children;
+  var cities = document.getElementById("city-list").children;
   var markMatches = function() {
     for (var i=0; i<cities.length; ++i) {
       cities[i].className = "";
@@ -284,7 +283,6 @@
     }
   };
   prefix.addEventListener("keyup",markMatches);
-})();
 </script>
 </body>
 </html>
