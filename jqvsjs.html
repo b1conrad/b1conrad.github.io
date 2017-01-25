@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>jquery vs javascript</title>
+<meta charset="UTF-8">
+<style type="text/css">
+pre span { background-color: lightskyblue; }
+.advanced { background-color: white; visibility: hidden; }
+.fixed { visibility: visible; }
+.code { background-color: white; font-family: courier, sans-serif; font-size: 80%; }
+p { font-family: courier, sans-serif; }
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+</head>
+<body>
+<p><script type="text/javascript">document.write(location.href)</script></p>
+<table>
+<tr>
+<th>JQuery</th>
+<th>JavaScript</th>
+</tr>
+<tr>
+<td>requires jQuery library (70K (24K zipped))</td>
+<td>requires no extra library</td>
+</tr>
+<tr>
+<td valign="top" style="border-right:1px dashed silver">
+<pre>
+<span>&lt;script type="text/javascript"></span>
+$("document").ready(function(){
+  var $prefix = $("#prefix");
+  $prefix<span>.focus();</span>
+  var $cities = $("#cities li");
+<span>  var markMatches = function() {</span>
+    $cities.removeClass("match");
+
+
+    var thePrefix = $prefix.val()<span>.toLowerCase();</span>
+<span>    if (thePrefix.length > 0) {</span>
+      $cities.each(function(){
+        if ($(this).text()<span>.toLowerCase().startsWith(thePrefix)) {</span>
+          $(this).addClass("match");
+<span>        }</span>
+      });
+<span>    }</span>
+<span>  };</span>
+  $prefix.keyup(<span>markMatches);</span>
+});
+<span>&lt;/script></span>
+</pre>
+</td>
+<td valign="top">
+<pre>
+<span>&lt;script type="text/javascript"></span>
+<span class="advanced">(function(){</span>
+  var prefix = document.getElementById("prefix");
+  prefix<span>.focus();</span>
+  var cities = document.getElementById("cities").children;
+<span>  var markMatches = function() {</span>
+    for (var i=0; i&lt;cities.length; ++i) {
+      cities[i].className = "";
+    }
+    var thePrefix = prefix.value<span>.toLowerCase();</span>
+<span>    if (thePrefix.length > 0) {</span>
+      for (var i=0; i&lt;cities.length; ++i) {
+        if (cities[i].textContent<span>.toLowerCase().startsWith(thePrefix)) {</span>
+          cities[i].className = "match";
+<span>        }</span>
+      }
+<span>    }</span>
+<span>  };</span>
+  prefix.addEventListener("keyup",<span>markMatches);</span>
+<span class="advanced">}());</span>
+<span>&lt;/script></span>
+</pre>
+</td>
+</tr>
+<tr>
+<td>can place script in &lt;head> element</td>
+<td>must place script at <em>end</em> of &lt;body> element</td>
+</tr>
+<tr>
+<td>uses functional/callback style</td>
+<td>uses imperative style</td>
+</tr>
+<tr>
+<td>variables are contained in document ready function</td>
+<td id="fix-td">variables <span class="code">prefix</span>, <span class="code">cities</span>, <span class="code">markMatches</span>, <span class="code">i</span>, <span class="code">thePrefix</span> are added to global namespace
+<button id="fixer">fix</button>
+</td>
+</tr>
+</table>
+<script type="text/javascript">
+  $("#fixer").click(function(){
+    $(".advanced").toggleClass("fixed");
+    $("#fix-td").html("variables are contained using an <em>immediately invoked function expression</em> (IIFE)");
+  });
+</script> 
+</body>
+</html>
