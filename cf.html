@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Two ways</title>
+<meta charset="UTF-8">
+<style type="text/css">
+pre span { background-color: lightblue; }
+.advanced { background-color: white; visibility: hidden; }
+.fixed { visibility: visible; }
+.code { background-color: white; font-family: courier, sans-serif; font-size: 80%; }
+p { font-family: courier, sans-serif; }
+</style>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body>
+<p><script type="text/javascript">document.write(location.href)</script></p>
+<table>
+<tr>
+<th>String</th>
+<th>JQuery</th>
+</tr>
+<tr>
+<td valign="top" style="border-right:1px dashed silver">
+<pre>
+<span>$(document).ready(function() {
+$( "#cityField" ).keyup(function() {
+  var url = "http://bioresearch.byu.edu/cs260/jquery/getcity.cgi?q="
+            +$("#cityField").val();
+  $.getJSON(url,function(data) {</span>
+    var everything;
+    everything = "&lt;ul>";
+    $.each(data, function(i,item) {
+      everything += "&lt;li> "+data[i].city;
+    });
+    everything += "&lt;/ul>";
+    $("#txtHint").html(everything);
+<span>  })
+  .done(function() { console.log('getJSON request succeeded!'); })
+  .fail(function(jqXHR, textStatus, errorThrown) { 
+    console.log('getJSON request failed! ' + textStatus); 
+    console.log("incoming "+jqXHR.responseText);
+  })
+  .always(function() { console.log('getJSON request ended!');
+  })
+  .complete(function() { console.log("complete"); });
+});
+});</span>
+</pre>
+</td>
+<td valign="top">
+<pre>
+<span>$(document).ready(function() {
+$( "#cityField" ).keyup(function() {
+  var url = "http://bioresearch.byu.edu/cs260/jquery/getcity.cgi?q="
+            +$("#cityField").val();
+  $.getJSON(url,function(data) {</span>
+    var $matches;
+    $matches = $("&lt;ul>");
+    $.each(data, function(i,item) {
+      $matches.append($("&lt;li>").append(data[i].city));
+    });
+
+    $("#txtHint").html($matches);
+<span>  })
+  .done(function() { console.log('getJSON request succeeded!'); })
+  .fail(function(jqXHR, textStatus, errorThrown) { 
+    console.log('getJSON request failed! ' + textStatus); 
+    console.log("incoming "+jqXHR.responseText);
+  })
+  .always(function() { console.log('getJSON request ended!');
+  })
+  .complete(function() { console.log("complete"); });
+});
+});</span>
+</pre>
+</td>
+</tr>
+</table>
+</body>
+</html>
