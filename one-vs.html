@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>JS vs NG</title>
+<meta charset="UTF-8">
+<style type="text/css">
+pre span { background-color: lightblue; }
+p { font-family: courier, sans-serif; }
+.leftCol { padding-right: 50px; border-right: 1px dashed silver; }
+</style>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body>
+<p><script type="text/javascript">document.write(location.href)</script></p>
+<table>
+<tr>
+<th>Javascript</th>
+<th>Angular</th>
+</tr>
+<tr>
+<td valign="top" class="leftCol">
+<pre>
+<span>&lt;!doctype html>
+&lt;html></span>
+
+<span>&lt;body></span>
+
+&lt;div>
+    Name: &lt;input id="inputFirstname" value="John">
+    &lt;h1 id="h1Firstname">John&lt;/h1>
+<span>&lt;/div></span>
+
+&lt;script type="text/javascript">
+var app = { firstname: "John", lastname: "Doe" };
+inputFirstname.addEventListener("keyup",function(){
+  app.firstname = inputFirstname.value;
+  h1Firstname.textContent = app.firstname;
+});
+<span>&lt;/script>
+
+&lt;p>
+Change the name inside the input field,
+and the model data will change automatically,
+and therefore also the header will change its value.
+&lt;/p>
+
+&lt;/body>
+&lt;/html></span>
+</pre>
+</td>
+<td valign="top">
+<pre>
+<span>&lt;!DOCTYPE html>
+&lt;html></span>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js">&lt;/script>
+<span>&lt;body></span>
+
+&lt;div ng-app="myApp" ng-controller="myCtrl">
+    Name: &lt;input ng-model="firstname">
+    &lt;h1>{{firstname}}&lt;/h1>
+<span>&lt;/div></span>
+
+&lt;script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.firstname = "John";
+    $scope.lastname = "Doe";    
+});
+<span>&lt;/script>
+
+&lt;p>
+Change the name inside the input field,
+and the model data will change automatically,
+and therefore also the header will change its value.
+&lt;/p>
+
+&lt;/body>
+&lt;/html></span>
+</pre>
+</td>
+</tr>
+</table>
+</body>
+</html>

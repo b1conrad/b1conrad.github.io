@@ -26,9 +26,9 @@ $( "#cityField" ).keyup(function() {
   $.getJSON(url,function(data) {</span>
     var everything;
     everything = "&lt;ul>";
-    $.each(data, function(i,item) {
+<span>    $.each(data, function(i,item) {</span>
       everything += "&lt;li> "+data[i].city;
-    });
+<span>    });</span>
     everything += "&lt;/ul>";
     $("#txtHint").html(everything);
 <span>  })
@@ -53,9 +53,9 @@ $( "#cityField" ).keyup(function() {
   $.getJSON(url,function(data) {</span>
     var $matches;
     $matches = $("&lt;ul>");
-    $.each(data, function(i,item) {
+<span>    $.each(data, function(i,item) {</span>
       $matches.append($("&lt;li>").append(data[i].city));
-    });
+<span>    });</span>
 
     $("#txtHint").html($matches);
 <span>  })
