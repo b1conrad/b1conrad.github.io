@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+
+<body>
+
+<div>
+    Name: <input id="inputFirstname" value="John">
+    <h1 id="h1Firstname">John</h1>
+</div>
+
+<script type="text/javascript">
+var app = { firstname: "John", lastname: "Doe" };
+inputFirstname.addEventListener("keyup",function(){
+  app.firstname = inputFirstname.value;
+  h1Firstname.textContent = app.firstname;
+});
+</script>
+
+<p>Change the name inside the input field, and the model data will change automatically, and therefore also the header will change its value.</p>
+
+</body>
+</html>
