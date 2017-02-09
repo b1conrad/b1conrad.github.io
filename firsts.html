@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Two firsts</title>
+<meta charset="UTF-8">
+<style type="text/css">
+pre span { background-color: lightblue; }
+p { font-family: courier, sans-serif; }
+</style>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body>
+<p><script type="text/javascript">document.write(location.href)</script></p>
+<table>
+<tr>
+<th>HTML</th>
+<th>Javascript</th>
+</tr>
+<tr>
+<td valign="top" style="border-right:1px dashed silver">
+<pre>
+&lt;!doctype html>
+&lt;html ng-app="<span>firstApp</span>">
+  &lt;head>
+    &lt;title>First AngularJS App&lt;/title>
+  &lt;/head>
+  &lt;body>
+    &lt;div ng-controller="<span>FirstController</span>">
+      &lt;span>Name:&lt;/span>
+      &lt;input type="text" ng-model="first">
+      &lt;input type="text" ng-model="last">
+      &lt;button ng-click='updateMessage()'>Message&lt;/button>
+      &lt;hr>
+      {{heading + message}}
+    &lt;/div>
+    &lt;script src="http://code.angularjs.org/1.2.9/angular.min.js">&lt;/script>
+    &lt;script src="js/first.js">&lt;/script>
+  &lt;/body>
+&lt;/html>
+</pre>
+</td>
+<td valign="top">
+<pre>
+var firstApp = angular.module('<span>firstApp</span>', []);
+firstApp.controller('<span>FirstController</span>', function($scope) {
+  $scope.first = 'Some';
+  $scope.last = 'One';
+  $scope.heading = 'Message: ';
+  $scope.updateMessage = function() {
+    $scope.message = 'Hello ' + $scope.first +' '+ $scope.last + '!';
+  };
+});
+</pre>
+</td>
+</tr>
+</table>
+</body>
+</html>
