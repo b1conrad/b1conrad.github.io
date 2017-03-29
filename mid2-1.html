@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <style type="text/css">
 pre span { background-color: lightskyblue; }
-.advanced { background-color: white; visibility: hidden; }
+.advanced { background-color: aliceblue; visibility: hidden; }
 .fixed { visibility: visible; }
 .code { background-color: white; font-family: courier, sans-serif; font-size: 80%; }
 p { font-family: courier, sans-serif; }
@@ -37,6 +37,8 @@ p { font-family: courier, sans-serif; }
 <span class="advanced">    &lt;img src="{{comment.picture}}" width="40"></span>
     {{comment.title}} - upvotes: {{comment.upvotes}}
   &lt;/div>
+...
+&lt;/body>
 </pre>
 </td>
 <td valign="top">
@@ -58,12 +60,12 @@ angular.module('<span>comment</span>', [])
         <span>$scope.comments</span>.push(data);
       });
     };
-    $scope.upvote = function(comment) {
+    <span>$scope.incrementUpvotes</span> = function(comment) {
 ...
     };
-    <span>$scope.incrementUpvotes</span> = function(comment) {
-      $scope.upvote(comment);
-    };
+...
+  }
+]);
 </pre>
 </td>
 </tr>
