@@ -30,8 +30,10 @@ p { font-family: courier, sans-serif; }
     &lt;button type="submit">Add Comment&lt;/button>
   &lt;/form>
   &lt;div ng-repeat="comment in <span>comments</span> | orderBy: '-upvotes'">
-    &lt;span class="glyphicon glyphicon-remove" ng-click="delete(comment)">&lt;/span>
-    &lt;span class="glyphicon glyphicon-thumbs-up" ng-click="<span>incrementUpvotes</span>(comment)">&lt;/span>
+    &lt;span class="glyphicon glyphicon-remove"
+      ng-click="delete(comment)">&lt;/span>
+    &lt;span class="glyphicon glyphicon-thumbs-up"
+      ng-click="<span>incrementUpvotes</span>(comment)">&lt;/span>
 <span class="advanced">    &lt;img src="{{comment.picture}}" width="40"></span>
     {{comment.title}} - upvotes: {{comment.upvotes}}
   &lt;/div>
