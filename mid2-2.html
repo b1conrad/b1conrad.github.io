@@ -33,6 +33,7 @@ angular.module('comment', [])
         <span>title</span>:$scope.formContent,
         upvotes:0
       };
+<span class="advanced">      $scope.picture='';</span>
       $scope.formContent='';
       $http.post('/comments', newcomment).success(function(data){
         $scope.comments.push(data);
