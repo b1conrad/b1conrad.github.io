@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Midterm 2 part 1</title>
+<meta charset="UTF-8">
+<style type="text/css">
+pre span { background-color: lightskyblue; }
+.advanced { background-color: white; visibility: hidden; }
+.fixed { visibility: visible; }
+.code { background-color: white; font-family: courier, sans-serif; font-size: 80%; }
+p { font-family: courier, sans-serif; }
+</style>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body>
+<p><script type="text/javascript">document.write(location.href)</script></p>
+<table>
+<tr>
+<th>JavaScript</th>
+<th>Mongo model</th>
+</tr>
+<tr>
+<td valign="top" style="border-right:1px dashed silver">
+<pre>
+angular.module('comment', [])
+.controller('MainCtrl', [
+  '$scope','$http',
+  function($scope,$http){
+    $scope.comments = [];
+    $scope.addComment = function() {
+      var newcomment = {
+<span class="advanced">        <span>picture</span>:$scope.picture,</span>
+        <span>title</span>:$scope.formContent,
+        upvotes:0
+      };
+      $scope.formContent='';
+      $http.post('/comments', newcomment).success(function(data){
+        $scope.comments.push(data);
+      });
+    };
+    $scope.upvote = function(comment) {
+...
+    };
+    $scope.incrementUpvotes = function(comment) {
+      $scope.upvote(comment);
+    };
+</pre>
+</td>
+<td valign="top">
+<pre>
+var mongoose = require('mongoose');
+var CommentSchema = new mongoose.Schema({
+<span class="advanced">  <span>picture</span>: String,</span>
+  <span>title</span>: String,
+  upvotes: {type: Number, default: 0},
+});
+CommentSchema.methods.upvote = function(cb) {
+  this.upvotes += 1;
+  this.save(cb);
+};
+mongoose.model('Comment', CommentSchema);
+</pre>
+</td>
+</tr>
+<tr>
+<td></td>
+<td>
+<button id="fixer">fix</button>
+</td>
+</tr>
+</table>
+<script type="text/javascript">
+  $("#fixer").click(function(){
+    $(".advanced").toggleClass("fixed");
+  });
+</script> 
+</body>
+</html>

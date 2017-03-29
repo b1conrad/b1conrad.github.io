@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Midterm 2 part 1</title>
+<meta charset="UTF-8">
+<style type="text/css">
+pre span { background-color: lightskyblue; }
+.advanced { background-color: white; visibility: hidden; }
+.fixed { visibility: visible; }
+.code { background-color: white; font-family: courier, sans-serif; font-size: 80%; }
+p { font-family: courier, sans-serif; }
+</style>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body>
+<p><script type="text/javascript">document.write(location.href)</script></p>
+<table>
+<tr>
+<th>HTML</th>
+<th>JavaScript</th>
+</tr>
+<tr>
+<td valign="top" style="border-right:1px dashed silver">
+<pre>
+&lt;body ng-app="<span>comment</span>" ng-controller="<span>MainCtrl</span>">
+...
+  &lt;form ng-submit="<span>addComment</span>()" style = "margin-top30px;">
+<span class="advanced">    &lt;input type="text" ng-model="picture">&lt;/input></span>
+    &lt;input type="text" ng-model="<span>formContent</span>">&lt;/input>
+    &lt;button type="submit">Add Comment&lt;/button>
+  &lt;/form>
+  &lt;div ng-repeat="comment in <span>comments</span> | orderBy: '-upvotes'">
+    &lt;span class="glyphicon glyphicon-remove" ng-click="delete(comment)">&lt;/span>
+    &lt;span class="glyphicon glyphicon-thumbs-up" ng-click="<span>incrementUpvotes</span>(comment)">&lt;/span>
+<span class="advanced">    &lt;img src="{{comment.picture}}" width="40"></span>
+    {{comment.title}} - upvotes: {{comment.upvotes}}
+  &lt;/div>
+</pre>
+</td>
+<td valign="top">
+<pre>
+angular.module('<span>comment</span>', [])
+.controller('<span>MainCtrl</span>', [
+  '$scope','$http',
+  function($scope,$http){
+    <span>$scope.comments</span> = [];
+    <span>$scope.addComment</span> = function() {
+      var newcomment = {
+<span class="advanced">        picture:$scope.picture,</span>
+        title:<span>$scope.formContent</span>,
+        upvotes:0
+      };
+      <span>$scope.formContent</span>='';
+      $http.post('/comments', newcomment).success(function(data){
+        <span>$scope.comments</span>.push(data);
+      });
+    };
+    $scope.upvote = function(comment) {
+...
+    };
+    <span>$scope.incrementUpvotes</span> = function(comment) {
+      $scope.upvote(comment);
+    };
+</pre>
+</td>
+</tr>
+<tr>
+<td></td>
+<td>
+<button id="fixer">fix</button>
+</td>
+</tr>
+</table>
+<script type="text/javascript">
+  $("#fixer").click(function(){
+    $(".advanced").toggleClass("fixed");
+  });
+</script> 
+</body>
+</html>
